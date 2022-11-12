@@ -6,16 +6,18 @@ LINK_FLAGS = -lm
 
 
 program: main.o basicClassification.o advancedClassificationLoop.o
-	$(COMPILER) main.o basicClassification.o advancedClassificationLoop.o -o program $(LINK_FLAGS)
+	$(COMPILER) -o program main.o basicClassification.o advancedClassificationLoop.o $(LINK_FLAGS)
 
 main.o: main.c NumClass.h
-	$(COMPILER) -c main.c $(COMPILE_FLAGS)
+	$(COMPILER) -c $(COMPILE_FLAGS) main.c
 
 basicClassification.o: basicClassification.c NumClass.h
-	$(COMPILER) -c basicClassification.c $(COMPILE_FLAGS)
+	$(COMPILER) -c $(COMPILE_FLAGS) basicClassification.c
 
 advancedClassificationLoop.o: advancedClassificationLoop.c NumClass.h
-	$(COMPILER) -c advancedClassificationLoop.c $(COMPILE_FLAGS)
+	$(COMPILER) -c $(COMPILE_FLAGS) advancedClassificationLoop.c
+
+.PHONY: clean all
 
 clean:
 	rm -f *.o program

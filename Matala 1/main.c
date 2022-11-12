@@ -12,20 +12,27 @@ int main() {
     printf("Primes: ");
     for(int currNum = startNum; currNum <= endNum; currNum++){
         if(isPrime(currNum) == 1){
-            printf("%d ", currNum);
+            printf("%d, ", currNum);
         }
     }
     printf("\nStrongs: ");
     for(int currNum2 = startNum; currNum2 <= endNum; currNum2++){
         if(isStrong(currNum2) == 1){
-            printf("%d ", currNum2);
+            printf("%d, ", currNum2);
         }
     }
 
     printf("\nArmstrongs: ");
     for(int currNum3 = startNum; currNum3 <= endNum; currNum3++){
         if(isArmstrong(currNum3) == 1){
-            printf("%d ", currNum3);
+            printf("%d, ", currNum3);
+        }
+    }
+
+    printf("\nPalindromes: ");
+    for(int currNum3 = startNum; currNum3 <= endNum; currNum3++){
+        if(isPalindrome(currNum3) == 1){
+            printf("%d, ", currNum3);
         }
     }
 
