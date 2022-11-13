@@ -13,9 +13,6 @@ int isPrime(int candidate){
     if (candidate <= 1)
         return 0;
 
-    if(candidate == 2)
-        return 1;
-
     // Check from 2 to square root of n
     int squareRoot = (int)sqrt(candidate);
     for (int i = 2; i <= squareRoot; i++)

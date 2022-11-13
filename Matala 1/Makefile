@@ -1,15 +1,27 @@
-all: program
+.PHONY: clean all
+
+all: maindloop maindrec
 
 COMPILER = gcc
-COMPILE_FLAGS = -Wall
+COMPILE_FLAGS = -Wall -fPIC #fPIC for using compiled files for dynamic library.
 LINK_FLAGS = -lm
 
+maindloop: main.o basicClassification.o advancedClassificationLoop.o
+	$(COMPILER) main.o basicClassification.o advancedClassificationLoop.o -o maindloop $(LINK_FLAGS)
 
-program: main.o basicClassification.o advancedClassificationLoop.o
-	$(COMPILER) -o program main.o basicClassification.o advancedClassificationLoop.o $(LINK_FLAGS)
+maindrec: main.o basicClassification.o advancedClassificationRecursion.o
+	$(COMPILER) main.o basicClassification.o advancedClassificationRecursion.o -o maindrec $(LINK_FLAGS)
+
+#Dynamic loops library
+#loopsd: basicClassification.o advancedClassificationLoop.o
+#	$(COMPILER) -shared basicClassification.o advancedClassificationLoop.o -o libclassloops.so
+
+#Static loops library
+#libclassloops.a: basicClassification.o advancedClassificationLoop.o
+#	ar rcs libclassloops.a basicClassification.o advancedClassificationLoop.o
 
 main.o: main.c NumClass.h
-	$(COMPILER) -c $(COMPILE_FLAGS) main.c
+	$(COMPILER) -c -Wall main.c
 
 basicClassification.o: basicClassification.c NumClass.h
 	$(COMPILER) -c $(COMPILE_FLAGS) basicClassification.c
@@ -17,8 +29,9 @@ basicClassification.o: basicClassification.c NumClass.h
 advancedClassificationLoop.o: advancedClassificationLoop.c NumClass.h
 	$(COMPILER) -c $(COMPILE_FLAGS) advancedClassificationLoop.c
 
-.PHONY: clean all
+advancedClassificationRecursion.o: advancedClassificationRecursion.c NumClass.h
+	$(COMPILER) -c $(COMPILE_FLAGS) advancedClassificationRecursion.c
 
 clean:
-	rm -f *.o program
+	rm -f *.o *.so *.a maindloop maindrec
 
