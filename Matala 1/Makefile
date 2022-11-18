@@ -2,29 +2,34 @@ COMPILER = gcc
 COMPILE_FLAGS = -Wall -fPIC #fPIC for using compiled files for dynamic library.
 LINK_FLAGS = -lm
 AR = ar
+MAINS = mains maindloop maindrec
 
-all: maindloop maindrec
+all: $(MAINS)
 
-maindloop: main.o basicClassification.o advancedClassificationLoop.o
-	$(COMPILER) main.o basicClassification.o advancedClassificationLoop.o -o maindloop $(LINK_FLAGS)
+mains: main.o libclassrec.a
+	$(COMPILER) -Wall -g main.o libclassrec.a -o mains $(LINK_FLAGS)
 
-maindrec: main.o basicClassification.o advancedClassificationRecursion.o
-	$(COMPILER) main.o basicClassification.o advancedClassificationRecursion.o -o maindrec $(LINK_FLAGS)
+maindloop: main.o libclassloops.so
+	$(COMPILER) -Wall -g -o maindloop main.o ./libclassloops.so $(LINK_FLAGS)
 
-#dynamic libraries:
-libclassrec.so: basicClassification.o advancedClassificationRecursion.o
-	$(COMPILER) $(COMPILE_FLAGS) -shared -o libclassloops.so basicClassification.o advancedClassificationRecursion.o
+maindrec: main.o libclassrec.so
+	$(COMPILER) -Wall -g -o maindrec main.o ./libclassrec.so $(LINK_FLAGS)
+
+#Loop libraries:
+libclassloops.a: basicClassification.o advancedClassificationLoop.o
+	$(AR) -rcs libclassloops.a basicClassification.o advancedClassificationLoop.o
 
 libclassloops.so: basicClassification.o advancedClassificationLoop.o
 	$(COMPILER) $(COMPILE_FLAGS) -shared -o libclassloops.so basicClassification.o advancedClassificationLoop.o
 
-#Static libraries:
-libclassloops.a: basicClassification.o advancedClassificationLoop.o
-	$(AR) -rcs libclassloops.a basicClassification.o advancedClassificationLoop.o
-
+#Recursion libraries:
 libclassrec.a: basicClassification.o advancedClassificationRecursion.o
 	$(AR) -rcs libclassrec.a basicClassification.o advancedClassificationRecursion.o
 
+libclassrec.so: basicClassification.o advancedClassificationRecursion.o
+	$(COMPILER) $(COMPILE_FLAGS) -shared -o libclassrec.so basicClassification.o advancedClassificationRecursion.o
+
+#Source file compilations
 main.o: main.c NumClass.h
 	$(COMPILER) -c -Wall main.c
 
@@ -40,5 +45,5 @@ advancedClassificationRecursion.o: advancedClassificationRecursion.c NumClass.h
 .PHONY: clean all
 
 clean:
-	rm -f *.o *.so *.a maindloop maindrec
+	rm -f *.o *.so *.a $(MAINS)
 

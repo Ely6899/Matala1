@@ -16,6 +16,7 @@ int main() {
             printf("%d, ", currNum);
         }
     }
+
     printf("\nStrongs: ");
     for(currNum = startNum; currNum <= endNum; currNum++){
         if(isStrong(currNum) == 1){
@@ -34,14 +35,10 @@ int main() {
 
     printf("\nPalindromes: ");
     for(currNum = startNum; currNum <= endNum; currNum++){
-        printf("for num %d ans is %d\n", currNum, isPalindrome(currNum));
         if(isPalindrome(currNum) == 1){
             printf("%d, ", currNum);
         }
     }
-
-
-
 
     printf("\n");
     return 0;
