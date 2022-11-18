@@ -1,10 +1,9 @@
-.PHONY: clean all
-
-all: maindloop maindrec
-
 COMPILER = gcc
 COMPILE_FLAGS = -Wall -fPIC #fPIC for using compiled files for dynamic library.
 LINK_FLAGS = -lm
+AR = ar
+
+all: maindloop maindrec libclassloops.a
 
 maindloop: main.o basicClassification.o advancedClassificationLoop.o
 	$(COMPILER) main.o basicClassification.o advancedClassificationLoop.o -o maindloop $(LINK_FLAGS)
@@ -12,13 +11,19 @@ maindloop: main.o basicClassification.o advancedClassificationLoop.o
 maindrec: main.o basicClassification.o advancedClassificationRecursion.o
 	$(COMPILER) main.o basicClassification.o advancedClassificationRecursion.o -o maindrec $(LINK_FLAGS)
 
-#Dynamic loops library
-#loopsd: basicClassification.o advancedClassificationLoop.o
-#	$(COMPILER) -shared basicClassification.o advancedClassificationLoop.o -o libclassloops.so
+#dynamic libraries:
+libclassrec.so: basicClassification.o advancedClassificationRecursion.o
+	$(COMPILER) $(COMPILE_FLAGS) -shared -o libclassloops.so basicClassification.o advancedClassificationRecursion.o
 
-#Static loops library
-#libclassloops.a: basicClassification.o advancedClassificationLoop.o
-#	ar rcs libclassloops.a basicClassification.o advancedClassificationLoop.o
+libclassloops.so: basicClassification.o advancedClassificationLoop.o
+	$(COMPILER) $(COMPILE_FLAGS) -shared -o libclassloops.so basicClassification.o advancedClassificationLoop.o
+
+#Static libraries:
+libclassloops.a: basicClassification.o advancedClassificationLoop.o
+	$(AR) -rcs libclassloops.a basicClassification.o advancedClassificationLoop.o
+
+libclassrec.a: basicClassification.o advancedClassificationRecursion.o
+	$(AR) -rcs libclassrec.a basicClassification.o advancedClassificationRecursion.o
 
 main.o: main.c NumClass.h
 	$(COMPILER) -c -Wall main.c
@@ -31,6 +36,8 @@ advancedClassificationLoop.o: advancedClassificationLoop.c NumClass.h
 
 advancedClassificationRecursion.o: advancedClassificationRecursion.c NumClass.h
 	$(COMPILER) -c $(COMPILE_FLAGS) advancedClassificationRecursion.c
+
+.PHONY: clean all
 
 clean:
 	rm -f *.o *.so *.a maindloop maindrec

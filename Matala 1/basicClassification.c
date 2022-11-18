@@ -1,22 +1,29 @@
 //
 // Created by ely6899 on 11/9/22.
 //
-#include <math.h>
-#include <stdio.h>
+
+#import <math.h>
+
+int digitCount(int n){
+    int digCount = 0;
+    while(n > 10){
+        n/=10;
+        digCount++;
+    }
+    return digCount;
+}
 
 /*
  * Checks whenever candidate param is prime.
  * */
 
-int isPrime(int candidate){
+int isPrime(int n){
     // Corner case
-    if (candidate <= 1)
+    if (n <= 1)
         return 0;
 
-    // Check from 2 to square root of n
-    int squareRoot = (int)sqrt(candidate);
-    for (int i = 2; i <= squareRoot; i++)
-        if (candidate % i == 0)
+    for (int i = 2; i < n/2; i++)
+        if (n % i == 0)
             return 0;
 
     return 1;
