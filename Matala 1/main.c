@@ -3,43 +3,44 @@
 
 
 int main() {
-    /*int startNum, endNum;
+    int startNum, endNum;
     printf("Enter first number(must be positive): ");
     scanf("%d", &startNum);
     printf("Enter last number(must be positive): ");
     scanf("%d", &endNum);
+    int currNum;
 
     printf("Primes: ");
-    for(int currNum = startNum; currNum <= endNum; currNum++){
+    for(currNum = startNum; currNum <= endNum; currNum++){
         if(isPrime(currNum) == 1){
             printf("%d, ", currNum);
         }
     }
     printf("\nStrongs: ");
-    for(int currNum2 = startNum; currNum2 <= endNum; currNum2++){
-        if(isStrong(currNum2) == 1){
-            printf("%d, ", currNum2);
+    for(currNum = startNum; currNum <= endNum; currNum++){
+        if(isStrong(currNum) == 1){
+            printf("%d, ", currNum);
         }
     }
 
     printf("\nArmstrongs: ");
-    for(int currNum3 = startNum; currNum3 <= endNum; currNum3++){
-        if(isArmstrong(currNum3) == 1){
-            printf("%d, ", currNum3);
+    for(currNum = startNum; currNum <= endNum; currNum++){
+        if(isArmstrong(currNum) == 1){
+            printf("%d, ", currNum);
         }
     }
 
+
+
     printf("\nPalindromes: ");
-    for(int currNum3 = startNum; currNum3 <= endNum; currNum3++){
-        if(isPalindrome(currNum3) == 1){
-            printf("%d, ", currNum3);
+    for(currNum = startNum; currNum <= endNum; currNum++){
+        printf("for num %d ans is %d\n", currNum, isPalindrome(currNum));
+        if(isPalindrome(currNum) == 1){
+            printf("%d, ", currNum);
         }
-    }*/
-    int n = 0;
-    printf("insert num: ");
-    scanf("%d", &n);
-    int ans = isArmstrong(n);
-    printf("%d", ans);
+    }
+
+
 
 
     printf("\n");

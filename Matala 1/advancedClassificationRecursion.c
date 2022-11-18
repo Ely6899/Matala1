@@ -17,30 +17,27 @@ int isArmstrong(int n){
 }
 
 int sumStrong(int n, int a){
-    static int sum = 0;
+    int sum = 0;
     if(n != 0){
-        sum = (int)(pow(n%10, digitCount(a))) + sumStrong(n/10, a);
+        sum = pow(n%10, digitCount(a)) + sumStrong(n/10, a);
     }
     return sum;
 }
 
 int isPalindrome(int n){
-    int reverseN = reverseNum(n);
-    if(n == reverseN) return 1;
-    return 0;
-}
-
-int reverseNum(int n){
-    int leftovers;
-    static int sum = 0; //we want to define sum as static so it will maintain its value during the recursive calls.
-    if(n != 0){
-        leftovers = n%10;
-        sum = sum*10+leftovers;
-        reverseNum(n/10);
+    if(n / 10 == 0){
+        return True;
     }
-    else return sum;
-    return sum;
+    else{
+        int Ldigit = (n / (int)(pow(10, (int)log10(n)))) % 10;
+        int Rdigit = n % 10;
+        if(Ldigit != Rdigit){
+            return False;
+        }
+        else{
+            n = n / 10;
+            n = (n % (int)(pow(10, (int)log10(n))));
+            return isPalindrome(n);
+        }
+    }
 }
-
-
-
