@@ -25,10 +25,9 @@ int isPrime(int n){
     if(n == 1)
         return 1;
 
-    for (int i = 2; i < (int)sqrt(n); i++)
+    for (int i = 2; i < n; i++)
         if (n % i == 0)
             return 0;
-
     return 1;
 }
 
@@ -36,9 +35,9 @@ int isPrime(int n){
  * Checks whenever candidate param is considered a strong number.
  * */
 
-int isStrong(int candidate){
+int isStrong(int n){
     //Corner case
-    if(candidate <= 0)
+    if(n <= 0)
         return 0;
 
     int splitIndex = 1;
@@ -46,8 +45,8 @@ int isStrong(int candidate){
 
     unsigned long long factorial = 1LL, sumOfDigits = 0LL;
     //Checks for each digit
-    while(modulu != candidate){
-        modulu = (candidate % (int)pow(10, splitIndex));
+    while(modulu != n){
+        modulu = (n % (int)pow(10, splitIndex));
         digit =  modulu / (int)pow(10, splitIndex-1);
         if(digit == 0 || digit == 1)
             sumOfDigits += 1;
@@ -60,7 +59,7 @@ int isStrong(int candidate){
         }
         ++splitIndex;
     }
-    return sumOfDigits == candidate ? 1 : 0;
+    return sumOfDigits == n ? 1 : 0;
 
 
 }

@@ -3,14 +3,11 @@
 //
 
 #include <math.h>
-#include <stdio.h>
 
 extern int digitCount(int n);
 int reverseNum(int n);
 int sumStrong(int n, int a);
 
-#define True 1
-#define False 0
 
 int isArmstrong(int n){
     return (n == sumStrong(n,n))? 1: 0;
@@ -25,19 +22,19 @@ int sumStrong(int n, int a){
 }
 
 int isPalindrome(int n){
-    if(n / 10 == 0){
-        return True;
-    }
-    else{
-        int Ldigit = (n / (int)(pow(10, (int)log10(n)))) % 10;
-        int Rdigit = n % 10;
-        if(Ldigit != Rdigit){
-            return False;
-        }
-        else{
-            n = n / 10;
-            n = (n % (int)(pow(10, (int)log10(n))));
-            return isPalindrome(n);
-        }
-    }
+    if(n == reverseNum(n))
+        return 1;
+    return 0;
 }
+
+int reverseNum(int n)
+{
+    /* Find number of digits in num */
+    int digit = (int)log10(n);
+
+    if(n == 0)
+        return 0;
+
+    return ((n % 10 * pow(10, digit)) + reverseNum(n / 10));
+}
+
