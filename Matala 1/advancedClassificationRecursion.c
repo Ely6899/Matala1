@@ -2,27 +2,26 @@
 // Created by ely6899 on 11/13/22.
 //
 
-#import <math.h>
+#include <math.h>
+#include <stdio.h>
+
 extern int digitCount(int n);
 int reverseNum(int n);
-int isArmstrong2(int n, int m);
+int sumStrong(int n, int a);
 
 #define True 1
 #define False 0
 
 int isArmstrong(int n){
-    return isArmstrong2(n,n);
+    return (n == sumStrong(n,n))? 1: 0;
 }
 
-int isArmstrong2(int n, int n2){
+int sumStrong(int n, int a){
     static int sum = 0;
-    int ans = 0;
-    if(sum == n2) ans = 1;
     if(n != 0){
-        sum += pow(n%10, digitCount(n));
-        isArmstrong2(n/10, n2);
+        sum = (int)(pow(n%10, digitCount(a))) + sumStrong(n/10, a);
     }
-    return ans;
+    return sum;
 }
 
 int isPalindrome(int n){

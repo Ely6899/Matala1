@@ -2,7 +2,7 @@
 // Created by ely6899 on 11/9/22.
 //
 extern int digitCount(int n);
-#import <math.h>
+#include <math.h>
 /*
  * Checks whenever candidate param is considered an armstrong number.
  * */

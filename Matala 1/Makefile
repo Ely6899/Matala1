@@ -3,7 +3,7 @@ COMPILE_FLAGS = -Wall -fPIC #fPIC for using compiled files for dynamic library.
 LINK_FLAGS = -lm
 AR = ar
 
-all: maindloop maindrec libclassloops.a
+all: maindloop maindrec
 
 maindloop: main.o basicClassification.o advancedClassificationLoop.o
 	$(COMPILER) main.o basicClassification.o advancedClassificationLoop.o -o maindloop $(LINK_FLAGS)

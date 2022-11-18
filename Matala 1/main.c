@@ -3,7 +3,7 @@
 
 
 int main() {
-    int startNum, endNum;
+    /*int startNum, endNum;
     printf("Enter first number(must be positive): ");
     scanf("%d", &startNum);
     printf("Enter last number(must be positive): ");
@@ -34,7 +34,13 @@ int main() {
         if(isPalindrome(currNum3) == 1){
             printf("%d, ", currNum3);
         }
-    }
+    }*/
+    int n = 0;
+    printf("insert num: ");
+    scanf("%d", &n);
+    int ans = isArmstrong(n);
+    printf("%d", ans);
+
 
     printf("\n");
     return 0;

@@ -2,11 +2,11 @@
 // Created by ely6899 on 11/9/22.
 //
 
-#import <math.h>
+#include <math.h>
 
 int digitCount(int n){
     int digCount = 0;
-    while(n > 10){
+    while(n > 0){
         n/=10;
         digCount++;
     }
