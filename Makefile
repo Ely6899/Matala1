@@ -6,27 +6,27 @@ MAINS = mains maindloop maindrec
 
 all: $(MAINS)
 
-mains: main.o libclassrec.a
+mains: main.o recursives
 	$(COMPILER) -Wall -g main.o libclassrec.a -o mains $(LINK_FLAGS)
 
-maindloop: main.o libclassloops.so
+maindloop: main.o loopd
 	$(COMPILER) -Wall -g -o maindloop main.o ./libclassloops.so $(LINK_FLAGS)
 
-maindrec: main.o libclassrec.so
+maindrec: main.o recursived
 	$(COMPILER) -Wall -g -o maindrec main.o ./libclassrec.so $(LINK_FLAGS)
 
 #Loop libraries:
-libclassloops.a: basicClassification.o advancedClassificationLoop.o
+loops: basicClassification.o advancedClassificationLoop.o
 	$(AR) -rcs libclassloops.a basicClassification.o advancedClassificationLoop.o
 
-libclassloops.so: basicClassification.o advancedClassificationLoop.o
+loopd: basicClassification.o advancedClassificationLoop.o
 	$(COMPILER) $(COMPILE_FLAGS) -shared -o libclassloops.so basicClassification.o advancedClassificationLoop.o
 
 #Recursion libraries:
-libclassrec.a: basicClassification.o advancedClassificationRecursion.o
+recursives: basicClassification.o advancedClassificationRecursion.o
 	$(AR) -rcs libclassrec.a basicClassification.o advancedClassificationRecursion.o
 
-libclassrec.so: basicClassification.o advancedClassificationRecursion.o
+recursived: basicClassification.o advancedClassificationRecursion.o
 	$(COMPILER) $(COMPILE_FLAGS) -shared -o libclassrec.so basicClassification.o advancedClassificationRecursion.o
 
 #Source file compilations
