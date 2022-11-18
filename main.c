@@ -4,9 +4,7 @@
 
 int main() {
     int startNum, endNum;
-    printf("Enter first number(must be positive): ");
     scanf("%d", &startNum);
-    printf("Enter last number(must be positive): ");
     scanf("%d", &endNum);
     int currNum;
 
