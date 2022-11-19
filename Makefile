@@ -4,7 +4,7 @@ LINK_FLAGS = -lm
 AR = ar
 MAINS = mains maindloop maindrec
 
-all: $(MAINS)
+all: $(MAINS) loops
 
 mains: main.o libclassrec.a
 	$(COMPILER) -Wall -g main.o libclassrec.a -o mains $(LINK_FLAGS)
