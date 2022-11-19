@@ -19,7 +19,7 @@ int digitCount(int n){
 
 int isPrime(int n){
     // Corner case
-    if (n < 0)
+    if (n <= 0)
         return 0;
 
     if(n == 1)
@@ -39,6 +39,9 @@ int isStrong(int n){
     //Corner case
     if(n <= 0)
         return 0;
+
+    if(n == 1)
+        return 1;
 
     int splitIndex = 1;
     int modulu, digit;
