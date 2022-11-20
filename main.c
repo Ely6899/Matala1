@@ -4,9 +4,7 @@
 
 int main() {
     int startNum, endNum;
-    printf("enter first number(must be positive): ");
     scanf("%d", &startNum);
-    printf("enter a second number(must be positive and bigger than the first number): ");
     scanf("%d", &endNum);
     int currNum;
 
