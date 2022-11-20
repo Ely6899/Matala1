@@ -4,6 +4,9 @@
 
 #include <math.h>
 
+#define TRUE 1
+#define FALSE 0
+
 int digitCount(int n){
     int digCount = 0;
     while(n > 0){
@@ -20,15 +23,15 @@ int digitCount(int n){
 int isPrime(int n){
     // Corner case
     if (n <= 0)
-        return 0;
+        return FALSE;
 
     if(n == 1)
-        return 1;
+        return TRUE;
 
     for (int i = 2; i < n; i++)
         if (n % i == 0)
-            return 0;
-    return 1;
+            return FALSE;
+    return TRUE;
 }
 
 /*
@@ -38,10 +41,10 @@ int isPrime(int n){
 int isStrong(int n){
     //Corner case
     if(n <= 0)
-        return 0;
+        return FALSE;
 
     if(n == 1)
-        return 1;
+        return TRUE;
 
     int splitIndex = 1;
     int modulu, digit;
@@ -62,7 +65,7 @@ int isStrong(int n){
         }
         ++splitIndex;
     }
-    return sumOfDigits == n ? 1 : 0;
+    return sumOfDigits == n ? TRUE : FALSE;
 
 
 }

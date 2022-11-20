@@ -3,6 +3,8 @@
 //
 
 #include <math.h>
+#define TRUE 1
+#define FALSE 0
 
 extern int digitCount(int n);
 int reverseNum(int n);
@@ -10,7 +12,7 @@ int sumStrong(int n, int a);
 
 
 int isArmstrong(int n){
-    return (n == sumStrong(n,n))? 1: 0;
+    return (n == sumStrong(n,n))? TRUE: FALSE;
 }
 
 int sumStrong(int n, int a){
@@ -23,8 +25,8 @@ int sumStrong(int n, int a){
 
 int isPalindrome(int n){
     if(n == reverseNum(n))
-        return 1;
-    return 0;
+        return TRUE;
+    return FALSE;
 }
 
 int reverseNum(int n)
@@ -33,7 +35,7 @@ int reverseNum(int n)
     int digit = (int)log10(n);
 
     if(n == 0)
-        return 0;
+        return FALSE;
 
     return ((n % 10 * pow(10, digit)) + reverseNum(n / 10));
 }

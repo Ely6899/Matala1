@@ -3,6 +3,8 @@
 //
 extern int digitCount(int n);
 #include <math.h>
+#define TRUE 1
+#define FALSE 0
 /*
  * Checks whenever candidate param is considered an armstrong number.
  * */
@@ -17,13 +19,13 @@ int isArmstrong(int n){
         sum += pow(dig, digCount);
         n2 /= 10;
     }
-    if(sum == n) return 1;
-    else return 0;
+    if(sum == n) return TRUE;
+    else return FALSE;
 }
 
 int isPalindrome(int n){
-    if(n < 0) return 0;
-    if(n < 10) return 1;
+    if(n < 0) return FALSE;
+    if(n < 10) return TRUE;
     int Fdigit = 0;
     int Ldigit = 0;
     int i = 1;
@@ -33,6 +35,6 @@ int isPalindrome(int n){
         Fdigit = (n / (int)(pow(10, digitCount(n) -i)) % 10);
         if(Ldigit != Fdigit) return 0;
     }
-    return 1;
+    return TRUE;
 }
 
