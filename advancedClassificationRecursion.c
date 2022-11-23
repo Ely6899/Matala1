@@ -7,7 +7,7 @@
 #define FALSE 0
 
 extern int digitCount(int n);
-int reverseNum(int n);
+int numberReversal(int n);
 int sumStrong(int n, int a);
 
 
@@ -24,19 +24,18 @@ int sumStrong(int n, int a){
 }
 
 int isPalindrome(int n){
-    if(n == reverseNum(n))
+    if(n == numberReversal(n))
         return TRUE;
     return FALSE;
 }
 
-int reverseNum(int n)
+//Recursive helper function for isPalindrome.
+int numberReversal(int n)
 {
-    /* Find number of digits in num */
-    int digit = (int)log10(n);
-
     if(n == 0)
         return FALSE;
-
-    return ((n % 10 * pow(10, digit)) + reverseNum(n / 10));
+    //Log helps decide the optimal digit point for the calculation.
+    int digit = (int)log10(n);
+    return ((n % 10 * pow(10, digit)) + numberReversal(n / 10));
 }
 
